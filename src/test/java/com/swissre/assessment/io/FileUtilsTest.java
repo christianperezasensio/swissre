@@ -1,14 +1,14 @@
-package com.swissre.assessment.utils;
+package com.swissre.assessment.io;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.swissre.assessment.utils.TestUtils.readData;
+import static com.swissre.assessment.io.FileUtils.readData;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-final class TestUtilsTest {
+class FileUtilsTest {
 
     @Test
     void readFile() {

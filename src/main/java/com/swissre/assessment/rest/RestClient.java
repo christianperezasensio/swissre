@@ -12,14 +12,25 @@ import static java.util.stream.Collectors.joining;
 
 public class RestClient {
 
-    public String sendRequest(String request, Map<String, String> parameters) throws IOException {
-        URL url = new URL(request + getParameterString(parameters));
+    private static final String ENDPOINT = "https://min-api.cryptocompare.com/data/price";
+    private static final int SUCCESS = 200;
+
+    public String sendRequest(Map<String, String> parameters) {
+        try {
+            return composeRequest(parameters);
+        } catch (IOException e) {
+            throw new RuntimeException("Error opening connection to REST API");
+        }
+    }
+
+    private String composeRequest(Map<String, String> parameters) throws IOException {
+        URL url = new URL(ENDPOINT + getParameterString(parameters));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-Type", "application/json");
 
-        if (connection.getResponseCode() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
+        if (connection.getResponseCode() != SUCCESS) {
+            throw new RuntimeException("Request failed - HTTP error code : " + connection.getResponseCode());
         }
 
         try (BufferedReader bufferedReader = new BufferedReader(
