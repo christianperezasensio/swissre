@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static com.swissre.assessment.io.FileUtils.readData;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class FileUtilsTest {
 

@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RestClientIT {
 
-    private RestClient restClient = new RestClient();
+    private final RestClient restClient = new RestClient();
     private static final String FROM_SYMBOL_KEY = "fsym";
     private static final String FROM_SYMBOL_VALUE = "BTC";
     private static final String TO_SYMBOL_KEY = "tsyms";

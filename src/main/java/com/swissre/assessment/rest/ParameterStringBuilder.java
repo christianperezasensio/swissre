@@ -1,19 +1,20 @@
 package com.swissre.assessment.rest;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import static java.net.URLEncoder.encode;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 final class ParameterStringBuilder {
-    static String getParameterString(Map<String, String> parameters) {
+    static String getParameterString(Map<String, String> parameters) throws UnsupportedEncodingException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("?");
 
-        for (var entry : parameters.entrySet()) {
-            stringBuilder.append(encode(entry.getKey(), UTF_8));
+        for (Map.Entry<String, String> entry : parameters.entrySet()) {
+            stringBuilder.append(encode(entry.getKey(), String.valueOf(UTF_8)));
             stringBuilder.append("=");
-            stringBuilder.append(encode(entry.getValue(), UTF_8));
+            stringBuilder.append(encode(entry.getValue(), String.valueOf(UTF_8)));
             stringBuilder.append("&");
         }
 
